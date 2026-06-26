@@ -109,11 +109,11 @@ https://templatemo.com/tm-599-noir-fashion
                 }
             });
             
-            // Special case for home when at the very top
+            // Keep Product highlighted when the user is at the top of the landing page
             if (scrollY < 100) {
                 navLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === '#home') {
+                    if (link.getAttribute('href') === '#product') {
                         link.classList.add('active');
                     }
                 });
@@ -140,10 +140,8 @@ https://templatemo.com/tm-599-noir-fashion
                 collectionCards.forEach(card => {
                     if (category === 'all' || card.dataset.category === category) {
                         card.style.display = 'block';
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.animation = 'fadeInUp 0.6s ease forwards';
-                        }, 100);
+                        card.style.opacity = '1';
+                        card.style.animation = '';
                     } else {
                         card.style.opacity = '0';
                         setTimeout(() => {
@@ -228,32 +226,4 @@ https://templatemo.com/tm-599-noir-fashion
             });
         }
 
-        // Form input animations
-        const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
-        formInputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                input.parentElement.style.transform = 'translateY(-2px)';
-            });
-            input.addEventListener('blur', () => {
-                input.parentElement.style.transform = '';
-            });
-        });
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.featured-container, .contact-content').forEach(el => {
-            observer.observe(el);
-        });
