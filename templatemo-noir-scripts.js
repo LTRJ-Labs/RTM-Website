@@ -157,7 +157,14 @@ https://templatemo.com/tm-599-noir-fashion
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
-                const target = document.querySelector(targetId);
+                let target = null;
+                if (targetId && targetId !== '#') {
+                    try {
+                        target = document.querySelector(targetId);
+                    } catch (e) {
+                        target = null;
+                    }
+                }
                 
                 if (target) {
                     // Get navbar height dynamically (it changes on medium screens)
@@ -200,6 +207,10 @@ https://templatemo.com/tm-599-noir-fashion
                 const formData = new FormData(contactForm);
                 const data = Object.fromEntries(formData);
                 
+                // Honeypot anti-spam check
+                const honeypot = contactForm.querySelector('#honeypot');
+                const isSpam = honeypot && honeypot.value.trim() !== '';
+                
                 // Animate submit button
                 const submitBtn = contactForm.querySelector('.form-submit');
                 const originalText = submitBtn.textContent;
@@ -207,7 +218,27 @@ https://templatemo.com/tm-599-noir-fashion
                 submitBtn.style.opacity = '0.7';
                 submitBtn.disabled = true;
                 
-                // Simulate sending (replace with actual API call)
+                if (isSpam) {
+                    // Silent fail for bots: pretend it succeeded to prevent bot retry loops
+                    setTimeout(() => {
+                        submitBtn.textContent = 'Message Sent! ✓';
+                        submitBtn.style.background = '#4CAF50';
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Reset button after delay
+                        setTimeout(() => {
+                            submitBtn.textContent = originalText;
+                            submitBtn.style.background = '';
+                            submitBtn.style.opacity = '';
+                            submitBtn.disabled = false;
+                        }, 3000);
+                    }, 1500);
+                    return;
+                }
+                
+                // Simulate sending for humans (replace with actual API call)
                 setTimeout(() => {
                     submitBtn.textContent = 'Message Sent! ✓';
                     submitBtn.style.background = '#4CAF50';
@@ -224,6 +255,79 @@ https://templatemo.com/tm-599-noir-fashion
                     }, 3000);
                 }, 1500);
             });
+        }
+
+        // Reviews Carousel
+        const reviewsTrack = document.querySelector('.testimonials-carousel-track');
+        const reviewsCards = document.querySelectorAll('.testimonials-carousel-track .testimonial-card');
+        const reviewsPrevBtn = document.querySelector('.reviews-prev');
+        const reviewsNextBtn = document.querySelector('.reviews-next');
+        const reviewsIndicators = document.querySelectorAll('.reviews-indicator');
+        
+        if (reviewsTrack && reviewsCards.length > 0) {
+            let activeIndex = 0;
+            const totalReviews = reviewsCards.length;
+            
+            function updateCarousel(index) {
+                if (index < 0) {
+                    activeIndex = totalReviews - 1;
+                } else if (index >= totalReviews) {
+                    activeIndex = 0;
+                } else {
+                    activeIndex = index;
+                }
+                
+                // Toggle active class on cards for gradual fade transition
+                reviewsCards.forEach((card, idx) => {
+                    if (idx === activeIndex) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+                
+                // Update indicators
+                reviewsIndicators.forEach((indicator, idx) => {
+                    if (idx === activeIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Event Listeners
+            if (reviewsPrevBtn) {
+                reviewsPrevBtn.addEventListener('click', () => {
+                    updateCarousel(activeIndex - 1);
+                });
+            }
+            
+            if (reviewsNextBtn) {
+                reviewsNextBtn.addEventListener('click', () => {
+                    updateCarousel(activeIndex + 1);
+                });
+            }
+            
+            reviewsIndicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    updateCarousel(index);
+                });
+            });
+
+            // Auto rotation every 18 seconds (gradual review reading pace)
+            let autoRotateInterval = setInterval(() => {
+                updateCarousel(activeIndex + 1);
+            }, 18000);
+
+            // Pause auto rotation on user interaction
+            const stopAutoRotate = () => {
+                clearInterval(autoRotateInterval);
+            };
+
+            if (reviewsPrevBtn) reviewsPrevBtn.addEventListener('click', stopAutoRotate);
+            if (reviewsNextBtn) reviewsNextBtn.addEventListener('click', stopAutoRotate);
+            reviewsIndicators.forEach(ind => ind.addEventListener('click', stopAutoRotate));
         }
 
 
