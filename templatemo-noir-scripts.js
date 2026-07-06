@@ -175,9 +175,7 @@ https://templatemo.com/tm-599-noir-fashion
                     if (targetId === '#home') {
                         offsetTop = 0;
                     } else {
-                        // For all other sections, position them right at the top of viewport
-                        // just below the navbar to completely hide previous content
-                        offsetTop = target.offsetTop - navHeight;
+                        offsetTop = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
                     }
                     
                     window.scrollTo({
@@ -262,7 +260,6 @@ https://templatemo.com/tm-599-noir-fashion
         const reviewsCards = document.querySelectorAll('.testimonials-carousel-track .testimonial-card');
         const reviewsPrevBtn = document.querySelector('.reviews-prev');
         const reviewsNextBtn = document.querySelector('.reviews-next');
-        const reviewsIndicators = document.querySelectorAll('.reviews-indicator');
         
         if (reviewsTrack && reviewsCards.length > 0) {
             let activeIndex = 0;
@@ -276,27 +273,20 @@ https://templatemo.com/tm-599-noir-fashion
                 } else {
                     activeIndex = index;
                 }
-                
-                // Toggle active class on cards for gradual fade transition
-                reviewsCards.forEach((card, idx) => {
-                    if (idx === activeIndex) {
-                        card.classList.add('active');
-                    } else {
-                        card.classList.remove('active');
-                    }
-                });
-                
-                // Update indicators
-                reviewsIndicators.forEach((indicator, idx) => {
-                    if (idx === activeIndex) {
-                        indicator.classList.add('active');
-                    } else {
-                        indicator.classList.remove('active');
-                    }
+
+                const card = reviewsCards[activeIndex];
+                if (card) {
+                    const cardRect = card.getBoundingClientRect();
+                    const trackRect = reviewsTrack.getBoundingClientRect();
+                    const offset = cardRect.left - trackRect.left + reviewsTrack.scrollLeft;
+                    reviewsTrack.scrollTo({ left: offset, behavior: 'smooth' });
+                }
+
+                reviewsCards.forEach((reviewCard, idx) => {
+                    reviewCard.classList.toggle('active', idx === activeIndex);
                 });
             }
             
-            // Event Listeners
             if (reviewsPrevBtn) {
                 reviewsPrevBtn.addEventListener('click', () => {
                     updateCarousel(activeIndex - 1);
@@ -308,26 +298,17 @@ https://templatemo.com/tm-599-noir-fashion
                     updateCarousel(activeIndex + 1);
                 });
             }
-            
-            reviewsIndicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    updateCarousel(index);
-                });
-            });
 
-            // Auto rotation every 18 seconds (gradual review reading pace)
             let autoRotateInterval = setInterval(() => {
                 updateCarousel(activeIndex + 1);
             }, 18000);
 
-            // Pause auto rotation on user interaction
             const stopAutoRotate = () => {
                 clearInterval(autoRotateInterval);
             };
 
             if (reviewsPrevBtn) reviewsPrevBtn.addEventListener('click', stopAutoRotate);
             if (reviewsNextBtn) reviewsNextBtn.addEventListener('click', stopAutoRotate);
-            reviewsIndicators.forEach(ind => ind.addEventListener('click', stopAutoRotate));
         }
 
 

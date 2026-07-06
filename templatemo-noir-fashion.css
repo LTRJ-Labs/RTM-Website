@@ -914,6 +914,12 @@ nav.scrolled {
 	position: relative;
 }
 
+.collections .feature-highlights-inline {
+	max-width: 1200px;
+	margin: 48px auto 0;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .section-header {
 	text-align: center;
 	margin-bottom: 60px;
@@ -930,6 +936,32 @@ nav.scrolled {
 	font-size: 18px;
 	letter-spacing: 2px;
 	text-transform: uppercase;
+}
+
+.product-description {
+	max-width: 1400px;
+	margin: 0 auto 40px;
+	padding: 0 50px 20px;
+}
+
+.product-description-content {
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 12px;
+	padding: 32px 36px;
+}
+
+.product-description-content h3 {
+	font-size: 28px;
+	letter-spacing: -1px;
+	margin-bottom: 14px;
+}
+
+.product-description-content p {
+	color: var(--text-muted);
+	line-height: 1.8;
+	font-size: 16px;
+	max-width: 900px;
 }
 
 /* Category Tabs */
@@ -1283,6 +1315,7 @@ nav.scrolled {
 	font-size: 32px;
 	margin-bottom: 15px;
 	letter-spacing: -1px;
+	scroll-margin-top: 100px;
 }
 
 .testimonials-grid {
@@ -1362,19 +1395,29 @@ nav.scrolled {
 .testimonials-carousel-track {
 	position: relative;
 	width: 100%;
-	display: block;
+	display: flex;
+	gap: 24px;
+	overflow-x: auto;
+	scroll-behavior: smooth;
+	scroll-snap-type: x proximity;
+	padding-bottom: 8px;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.testimonials-carousel-track::-webkit-scrollbar {
+	display: none;
 }
 
 .testimonials-carousel-track .testimonial-card {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	opacity: 0;
-	visibility: hidden;
-	transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, background 0.3s ease;
-	z-index: 1;
+	position: relative;
+	flex: 0 0 min(320px, calc(100% - 24px));
+	min-width: 280px;
+	opacity: 1;
+	visibility: visible;
+	transition: none;
 	box-sizing: border-box;
+	scroll-snap-align: start;
 }
 
 .testimonials-carousel-track .testimonial-card.active {
@@ -1382,8 +1425,71 @@ nav.scrolled {
 	opacity: 1;
 	visibility: visible;
 	z-index: 2;
-	/* Delay fade-in so the previous card has time to fade out fully, preventing overlap */
-	transition: opacity 0.8s ease-in-out 0.4s, visibility 0.8s ease-in-out 0.4s, background 0.3s ease;
+	transition: none;
+}
+
+.feature-modal {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+	z-index: 2000;
+}
+
+.feature-modal.active {
+	opacity: 1;
+	visibility: visible;
+}
+
+.feature-modal-backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.8);
+	backdrop-filter: blur(6px);
+}
+
+.feature-modal-dialog {
+	position: relative;
+	max-width: 560px;
+	width: min(100%, 560px);
+	background: linear-gradient(135deg, #171717, #0b0b0b);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-radius: 16px;
+	padding: 32px;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+	z-index: 1;
+}
+
+.feature-modal-close {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	border: 0;
+	background: transparent;
+	color: white;
+	font-size: 28px;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.feature-modal-dialog h3 {
+	font-size: 24px;
+	margin-bottom: 14px;
+}
+
+.feature-modal-dialog p {
+	color: var(--text-muted);
+	line-height: 1.7;
+}
+
+.feature-modal-details {
+	margin-top: 12px;
+	color: white;
 }
 
 .footer-link {
@@ -1439,26 +1545,6 @@ nav.scrolled {
 
 .reviews-control-btn.reviews-next:hover svg {
 	transform: translateX(2px);
-}
-
-.reviews-indicators {
-	display: flex;
-	gap: 8px;
-}
-
-.reviews-indicator {
-	width: 8px;
-	height: 8px;
-	border-radius: 50%;
-	background: rgba(255, 255, 255, 0.2);
-	cursor: pointer;
-	transition: all 0.3s ease;
-}
-
-.reviews-indicator.active {
-	background: var(--accent);
-	transform: scale(1.2);
-	box-shadow: 0 0 8px var(--accent);
 }
 
 /* Buy Page Spacing */
@@ -2010,8 +2096,28 @@ footer {
 		font-size: 32px;
 	}
 
+	.product-description {
+		padding: 0 20px 20px;
+	}
+
+	.product-description-content {
+		padding: 24px 20px;
+	}
+
+	.product-description-content h3 {
+		font-size: 22px;
+	}
+
 	.feature-highlights {
 		grid-template-columns: repeat(1, 1fr);
+	}
+
+	.testimonials-carousel-track {
+		gap: 16px;
+	}
+
+	.testimonials-carousel-track .testimonial-card {
+		flex-basis: min(100%, 320px);
 	}
 
 	.feature-timeline {
