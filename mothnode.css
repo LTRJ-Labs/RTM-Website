@@ -388,6 +388,19 @@ nav.scrolled {
 	object-fit: cover;
 }
 
+/* The dashboard screenshot is a wide 2:1 capture. Fitting the whole thing into
+   this portrait frame shrinks the readings to nothing, so it is anchored to the
+   top-left instead: the live tank readings fill the frame and stay legible. */
+.carousel-slide.is-screenshot {
+	background: var(--tint-soft);
+}
+
+.carousel-slide.is-screenshot img {
+	object-position: left top;
+	transform: scale(1.55);
+	transform-origin: left top;
+}
+
 .carousel-indicators {
 	position: absolute;
 	left: 50%;

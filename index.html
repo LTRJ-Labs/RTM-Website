@@ -69,19 +69,23 @@
                 </div>
 
                 <div class="hero-right">
-                    <!-- PLACEHOLDER IMAGES: swap images/placeholder-hero-*.svg for real 560x620 photos. -->
                     <div class="hero-media">
                         <div class="carousel-slide active">
-                            <img src="images/placeholder-hero-1.svg" alt="Placeholder for a photo of a fire cistern site"
-                                width="560" height="620">
+                            <img src="images/CisternSite.jpg"
+                                alt="A water cistern installed at a wooded rural site, with outlet piping at its base"
+                                width="2160" height="2880" fetchpriority="high">
                         </div>
                         <div class="carousel-slide">
-                            <img src="images/placeholder-hero-2.svg"
-                                alt="Placeholder for a photo of a MothNode monitoring unit" width="560" height="620">
+                            <img src="images/MothNodeUnit.jpg"
+                                alt="A MothNode monitoring unit mounted on a cistern lid, with its antenna and solar panel"
+                                width="2160" height="2880" loading="lazy">
                         </div>
-                        <div class="carousel-slide">
-                            <img src="images/placeholder-hero-3.svg"
-                                alt="Placeholder for a screenshot of the MothNode Dashboard" width="560" height="620">
+                        <!-- The dashboard screenshot is much wider than the hero frame, so it is
+                             contained rather than cropped - see .carousel-slide.is-screenshot. -->
+                        <div class="carousel-slide is-screenshot">
+                            <img src="images/Dashboard.png"
+                                alt="The MothNode Dashboard showing water amount, filled percentage, water depth, battery percentage and voltage, above a seven-day water level chart"
+                                width="1788" height="880" loading="lazy">
                         </div>
                         <div class="carousel-indicators" role="tablist" aria-label="Choose image">
                             <button class="indicator active" type="button" role="tab" aria-selected="true"
