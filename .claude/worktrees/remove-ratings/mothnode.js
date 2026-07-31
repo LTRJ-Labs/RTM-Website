@@ -143,50 +143,6 @@
 		});
 	});
 
-	/* ------------------------------------------------------------ Reviews carousel */
-
-	var reviewsTrack = document.querySelector('.reviews-track');
-	var reviewCards = document.querySelectorAll('.reviews-track .review-card');
-	var reviewsPrev = document.querySelector('.reviews-prev');
-	var reviewsNext = document.querySelector('.reviews-next');
-
-	if (reviewsTrack && reviewCards.length) {
-		var activeReview = 0;
-		var autoRotate = null;
-
-		var goToReview = function (index) {
-			activeReview = (index + reviewCards.length) % reviewCards.length;
-			var card = reviewCards[activeReview];
-			var offset = card.getBoundingClientRect().left - reviewsTrack.getBoundingClientRect().left + reviewsTrack.scrollLeft;
-			reviewsTrack.scrollTo({ left: offset, behavior: reduceMotion ? 'auto' : 'smooth' });
-		};
-
-		var stopAutoRotate = function () {
-			clearInterval(autoRotate);
-			autoRotate = null;
-		};
-
-		if (reviewsPrev) {
-			reviewsPrev.addEventListener('click', function () {
-				stopAutoRotate();
-				goToReview(activeReview - 1);
-			});
-		}
-
-		if (reviewsNext) {
-			reviewsNext.addEventListener('click', function () {
-				stopAutoRotate();
-				goToReview(activeReview + 1);
-			});
-		}
-
-		if (!reduceMotion) {
-			autoRotate = setInterval(function () {
-				goToReview(activeReview + 1);
-			}, 18000);
-		}
-	}
-
 	/* ------------------------------------------------------------ Contact form
 	   TODO: no backend is wired up. This currently reports success without
 	   sending anything anywhere. Point it at a real endpoint before launch. */
