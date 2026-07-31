@@ -605,127 +605,6 @@ nav.scrolled {
 	color: var(--ink-muted);
 }
 
-/* ---------------------------------------------------------------- Reviews */
-
-.reviews {
-	padding: 72px 40px 96px;
-	background: var(--tint-soft);
-	border-top: 1px solid var(--tint-line);
-	border-bottom: 1px solid var(--tint-line);
-}
-
-.reviews-inner {
-	max-width: 1200px;
-	margin: 0 auto;
-}
-
-.reviews-track-wrapper {
-	overflow: hidden;
-}
-
-.reviews-track {
-	display: flex;
-	gap: 24px;
-	overflow-x: auto;
-	scroll-behavior: smooth;
-	scroll-snap-type: x proximity;
-	padding-bottom: 4px;
-	scrollbar-width: none;
-	-ms-overflow-style: none;
-}
-
-.reviews-track::-webkit-scrollbar {
-	display: none;
-}
-
-.review-card {
-	position: relative;
-	flex: 0 0 min(340px, calc(100% - 24px));
-	padding: 32px;
-	background: var(--surface);
-	border: 1px solid var(--tint-line);
-	border-radius: var(--radius);
-	scroll-snap-align: start;
-	transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.review-card:hover {
-	border-color: var(--brand);
-	box-shadow: var(--shadow-md);
-}
-
-.review-rating {
-	color: var(--brand);
-	font-size: 16px;
-	letter-spacing: 2px;
-	margin-bottom: 16px;
-}
-
-.review-quote {
-	font-size: 15px;
-	line-height: 1.7;
-	color: var(--ink);
-	margin-bottom: 24px;
-}
-
-.review-author {
-	display: flex;
-	align-items: center;
-	gap: 14px;
-}
-
-.author-avatar {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 44px;
-	height: 44px;
-	flex-shrink: 0;
-	background: var(--brand);
-	border-radius: 50%;
-	color: #fff;
-	font-size: 16px;
-	font-weight: 700;
-}
-
-.author-info h3 {
-	font-size: 15px;
-	font-weight: 700;
-	color: var(--ink);
-}
-
-.author-info p {
-	font-size: 13px;
-	color: var(--ink-muted);
-}
-
-.reviews-controls {
-	display: flex;
-	justify-content: center;
-	gap: 16px;
-	margin-top: 36px;
-}
-
-.reviews-control-btn {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 44px;
-	height: 44px;
-	background: var(--surface);
-	border: 1px solid var(--tint-line-strong);
-	border-radius: 50%;
-	color: var(--brand);
-	cursor: pointer;
-	transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-}
-
-.reviews-control-btn:hover {
-	background: var(--brand);
-	border-color: var(--brand);
-	color: #fff;
-}
-
 /* ---------------------------------------------------------------- Buy / contact form */
 
 .buy {
@@ -1061,7 +940,6 @@ footer {
 		text-align: center;
 	}
 
-	.reviews,
 	.buy,
 	.legal {
 		padding-left: 20px;
@@ -1100,9 +978,5 @@ footer {
 		animation-duration: 0.01ms !important;
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
-	}
-
-	.reviews-track {
-		scroll-behavior: auto;
 	}
 }
