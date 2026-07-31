@@ -1,0 +1,6 @@
+# Line endings are normalized to LF in the repo so diffs stay readable.
+* text=auto eol=lf
+
+# Binary assets git should never try to diff or normalize.
+*.png binary
+*.jpg binary
