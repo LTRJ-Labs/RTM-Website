@@ -715,6 +715,42 @@ nav.scrolled {
 	margin-top: 36px;
 }
 
+/* Parent company credit. The logo is the one off-palette mark on the site,
+   so it is kept small and quiet under the copyright line. */
+
+.powered-by {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+
+.powered-by-label {
+	font-size: 13px;
+	letter-spacing: 0.04em;
+	color: var(--ink-muted);
+}
+
+.powered-by-link {
+	display: block;
+	line-height: 0;
+	opacity: 0.85;
+	transition: opacity 0.2s ease;
+}
+
+.powered-by-link:hover,
+.powered-by-link:focus-visible {
+	opacity: 1;
+}
+
+.powered-by-link img {
+	width: auto;
+	height: 26px;
+}
+
 /* ---------------------------------------------------------------- Legal pages */
 
 .legal {
