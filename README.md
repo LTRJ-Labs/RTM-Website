@@ -31,8 +31,15 @@ python3 -m http.server 8000
 
 ## Deploying
 
-Published with GitHub Pages from the `dev` branch, root folder. Pushing to `dev`
-deploys the site. Configured under repository Settings, Pages.
+Published with GitHub Pages from the `main` branch, root folder, at
+<https://mothnode.net>. The custom domain is held by the `CNAME` file in the repo
+root; deleting that file drops the domain.
+
+`dev` is where work happens. Merge `dev` into `main` to publish:
+
+```bash
+git checkout main && git merge dev && git push origin main
+```
 
 ## House rules
 
@@ -57,7 +64,7 @@ only when they are real and attributable.
 
 - The LinkedIn link in the footer points at `#`. Search for the `TODO` comment in
   each page.
-- `privacy@mothnode.com` needs to be a mailbox someone actually reads.
+- The repo must be public for GitHub Pages to serve it on the free plan.
 - There is no way to capture interest while the buy page says coming soon. Adding
   a form or a mailing list means updating the privacy policy first.
 
