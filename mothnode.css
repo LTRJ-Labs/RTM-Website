@@ -618,6 +618,57 @@ nav.scrolled {
 	color: var(--ink-muted);
 }
 
+/* ---------------------------------------------------------------- Trust */
+
+.trust {
+	padding: 72px 40px 96px;
+	background: var(--tint-soft);
+}
+
+.trust-inner {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.trust-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: 24px;
+}
+
+.trust-item {
+	padding: 28px;
+	background: var(--surface);
+	border: 1px solid var(--tint-line);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-sm);
+	transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.trust-item:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--shadow-md);
+}
+
+.trust-item-title {
+	margin-bottom: 10px;
+	font-size: 18px;
+	font-weight: 700;
+	color: var(--brand);
+}
+
+.trust-item-desc {
+	font-size: 15px;
+	line-height: 1.7;
+	color: var(--ink-muted);
+}
+
+.trust-cta {
+	display: flex;
+	justify-content: center;
+	margin-top: 48px;
+}
+
 /* ---------------------------------------------------------------- Buy / contact form */
 
 .buy {
@@ -847,7 +898,7 @@ footer {
 
 .footer-bottom {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
 	gap: 16px;
@@ -873,25 +924,6 @@ footer {
 	text-decoration: underline;
 }
 
-.payment-methods {
-	display: flex;
-	gap: 10px;
-}
-
-.payment-icon {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 42px;
-	height: 26px;
-	background: var(--surface);
-	border: 1px solid var(--tint-line);
-	border-radius: 3px;
-	font-size: 9px;
-	font-weight: 700;
-	letter-spacing: 0.04em;
-	color: var(--ink-muted);
-}
 
 /* ---------------------------------------------------------------- Responsive */
 
@@ -953,6 +985,7 @@ footer {
 		text-align: center;
 	}
 
+	.trust,
 	.buy,
 	.legal {
 		padding-left: 20px;
