@@ -142,41 +142,4 @@
 			});
 		});
 	});
-
-	/* ------------------------------------------------------------ Contact form
-	   TODO: no backend is wired up. This currently reports success without
-	   sending anything anywhere. Point it at a real endpoint before launch. */
-
-	var contactForm = document.getElementById('contactForm');
-
-	if (contactForm) {
-		contactForm.addEventListener('submit', function (e) {
-			e.preventDefault();
-
-			var submitBtn = contactForm.querySelector('.form-submit');
-			var honeypot = contactForm.querySelector('#honeypot');
-			var isBot = honeypot && honeypot.value.trim() !== '';
-			var originalText = submitBtn.textContent;
-
-			submitBtn.textContent = 'Sending...';
-			submitBtn.disabled = true;
-
-			// Bots get the same visible response as humans, so they can't detect the trap.
-			window.setTimeout(function () {
-				if (!isBot) {
-					// TODO: POST the form payload here.
-				}
-
-				submitBtn.textContent = 'Request sent';
-				submitBtn.classList.add('is-sent');
-				contactForm.reset();
-
-				window.setTimeout(function () {
-					submitBtn.textContent = originalText;
-					submitBtn.classList.remove('is-sent');
-					submitBtn.disabled = false;
-				}, 3000);
-			}, 1200);
-		});
-	}
 })();
