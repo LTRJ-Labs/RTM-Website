@@ -1,0 +1,53 @@
+name: Release Tag
+
+# Automatic release tagging (see docs/versioning-policy.md in the workspace repo).
+# Source of truth is the VERSION file. Bumping it in a PR is the deliberate act;
+# this turns the bump into a permanent tag + GitHub Release on merge to main.
+# Idempotent: unchanged version => tag exists => no-op. Dev pushes are not tagged.
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-tag-website
+  cancel-in-progress: false
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Read release version
+        id: v
+        run: |
+          version="$(tr -d '[:space:]' < VERSION)"
+          case "$version" in
+            [0-9]*.[0-9]*.[0-9]*) : ;;
+            *) echo "::error::VERSION ('$version') is not MAJOR.MINOR.PATCH"; exit 1 ;;
+          esac
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Create tag + release if new
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.v.outputs.version }}
+        run: |
+          tag="v${VERSION}"
+          if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
+            echo "Tag ${tag} already exists — version unchanged, nothing to release."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag -a "${tag}" -m "Website release ${tag}"
+          git push origin "${tag}"
+          gh release create "${tag}" --title "Website ${tag}" --generate-notes
