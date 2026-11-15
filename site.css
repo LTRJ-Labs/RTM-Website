@@ -1,0 +1,638 @@
+@charset "utf-8";
+
+/*
+	MothNode main page (draft build). See PLAN.md for section and slot notes.
+
+	Palette is the four authorized brand colors. Neutrals are grayscale; every
+	tint, rule, and shadow is the brand color at reduced alpha.
+*/
+
+/* Google Sans Flex (SIL OFL 1.1, see fonts/OFL.txt), variable weight 100-1000.
+   Self-hosted so visitors make no third-party requests. */
+@font-face {
+	font-family: "Google Sans Flex";
+	font-style: normal;
+	font-weight: 100 1000;
+	font-display: swap;
+	src: url("fonts/GoogleSansFlex-latin-ext.woff2") format("woff2");
+	unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+	font-family: "Google Sans Flex";
+	font-style: normal;
+	font-weight: 100 1000;
+	font-display: swap;
+	src: url("fonts/GoogleSansFlex-latin.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+	/* Brand */
+	--brand: #006086;
+	--brand-accent: #00ADEC;
+	--brand-natural: #A7FFD4;
+
+	/* Neutrals */
+	--surface: #ffffff;
+	--ink: #111111;
+	--ink-muted: #5c5c5c;
+
+	/* Brand at alpha */
+	--tint-soft: rgba(0, 96, 134, 0.045);
+	--tint: rgba(0, 96, 134, 0.08);
+	--tint-line: rgba(0, 96, 134, 0.16);
+	--tint-line-strong: rgba(0, 96, 134, 0.38);
+	--shadow-float: 0 10px 30px rgba(0, 96, 134, 0.14);
+
+	/* Shape and rhythm */
+	--radius-panel: 28px;
+	--radius-media: 20px;
+	--frame-inset: 12px;
+	--gutter: clamp(1.25rem, 4vw, 3rem);
+	--section-gap: clamp(4.5rem, 10vw, 9rem);
+}
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: "Google Sans Flex", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	font-size: 1.0625rem;
+	line-height: 1.6;
+	background: var(--surface);
+	color: var(--ink);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+img,
+video {
+	display: block;
+	max-width: 100%;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	color: inherit;
+}
+
+:focus-visible {
+	outline: 3px solid var(--brand-accent);
+	outline-offset: 3px;
+	border-radius: 6px;
+}
+
+.skip-link {
+	position: absolute;
+	top: 0.75rem;
+	left: 0.75rem;
+	z-index: 100;
+	padding: 0.6rem 1rem;
+	border-radius: 999px;
+	background: var(--brand);
+	color: #ffffff;
+	text-decoration: none;
+	transform: translateY(-200%);
+}
+
+.skip-link:focus {
+	transform: none;
+}
+
+/* Layout primitives ------------------------------------------------------ */
+
+.container {
+	width: 100%;
+	max-width: 1240px;
+	margin-inline: auto;
+	padding-inline: var(--gutter);
+}
+
+.container--narrow {
+	max-width: 1000px;
+}
+
+.section {
+	padding-block: var(--section-gap);
+}
+
+/* A band is a full-width rounded panel, inset from the viewport edge the same
+   way the hero frame is. */
+.band {
+	margin-inline: var(--frame-inset);
+	padding-block: var(--section-gap);
+	border-radius: var(--radius-panel);
+}
+
+.band--soft {
+	background: var(--tint-soft);
+}
+
+.band--brand {
+	background: var(--brand);
+	color: #ffffff;
+}
+
+.section,
+.band,
+.launch {
+	scroll-margin-top: 5.5rem;
+}
+
+/* Type --------------------------------------------------------------------- */
+
+h1,
+h2,
+h3 {
+	font-weight: 600;
+	text-wrap: balance;
+}
+
+h2 {
+	max-width: 20ch;
+	font-size: clamp(2rem, 3.6vw, 3.25rem);
+	line-height: 1.08;
+	letter-spacing: -0.02em;
+	color: var(--brand);
+}
+
+h3 {
+	font-size: clamp(1.2rem, 1.5vw, 1.375rem);
+	line-height: 1.25;
+	letter-spacing: -0.005em;
+}
+
+.band--brand h2 {
+	color: #ffffff;
+}
+
+/* Navigation --------------------------------------------------------------- */
+
+.site-nav {
+	position: fixed;
+	top: calc(var(--frame-inset) + 14px);
+	left: 50%;
+	z-index: 50;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	width: min(1180px, calc(100% - 2 * (var(--frame-inset) + 14px)));
+	padding: 0.45rem 0.55rem 0.45rem 1.1rem;
+	border: 1px solid rgba(255, 255, 255, 0.7);
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.82);
+	-webkit-backdrop-filter: blur(16px) saturate(1.4);
+	backdrop-filter: blur(16px) saturate(1.4);
+	box-shadow: var(--shadow-float);
+	transform: translateX(-50%);
+}
+
+.brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55rem;
+	font-size: 1.2rem;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	color: var(--brand);
+	text-decoration: none;
+}
+
+.brand img {
+	width: 32px;
+	height: 32px;
+}
+
+.nav-links {
+	display: flex;
+	align-items: center;
+	gap: 0.15rem;
+}
+
+.nav-links a {
+	display: block;
+	padding: 0.5rem 0.9rem;
+	border-radius: 999px;
+	font-size: 0.95rem;
+	font-weight: 500;
+	text-decoration: none;
+	transition: background-color 0.15s ease;
+}
+
+.nav-links a:hover {
+	background: var(--tint);
+}
+
+.nav-toggle {
+	display: none;
+	padding: 0.5rem 1rem;
+	border: 0;
+	border-radius: 999px;
+	background: var(--brand);
+	color: #ffffff;
+	font: inherit;
+	font-size: 0.95rem;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+/* 1. Hero ------------------------------------------------------------------ */
+
+.hero {
+	padding: var(--frame-inset);
+}
+
+.hero-frame {
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+	min-height: calc(100vh - 2 * var(--frame-inset));
+	min-height: calc(100svh - 2 * var(--frame-inset));
+	padding: clamp(0.75rem, 2.5vw, 2.25rem);
+	padding-top: 6.5rem;
+	border-radius: var(--radius-panel);
+	background: var(--tint);
+	overflow: hidden;
+}
+
+.hero-bg {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.hero-panel {
+	position: relative;
+	max-width: 46rem;
+	padding: clamp(1.4rem, 3vw, 2.75rem);
+	border: 1px solid rgba(255, 255, 255, 0.65);
+	border-radius: 22px;
+	background: rgba(255, 255, 255, 0.8);
+	-webkit-backdrop-filter: blur(20px) saturate(1.3);
+	backdrop-filter: blur(20px) saturate(1.3);
+}
+
+.hero-panel h1 {
+	font-size: clamp(2.1rem, 4.6vw, 4.25rem);
+	line-height: 1.04;
+	letter-spacing: -0.025em;
+	color: var(--brand);
+}
+
+.hero-sub {
+	max-width: 34rem;
+	margin-top: 1.1rem;
+	font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+	line-height: 1.45;
+}
+
+/* Small tag marking a temporary image. Remove with the stand-in. */
+.slot-note {
+	position: absolute;
+	right: clamp(0.75rem, 2.5vw, 2.25rem);
+	bottom: clamp(0.75rem, 2.5vw, 2.25rem);
+	padding: 0.3rem 0.75rem;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.8);
+	font-size: 0.8rem;
+	color: var(--brand);
+}
+
+/* Media slots -------------------------------------------------------------- */
+
+.media {
+	position: relative;
+	border-radius: var(--radius-media);
+	background: var(--tint);
+	overflow: hidden;
+}
+
+.media > img,
+.media > video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.media--wide {
+	aspect-ratio: 21 / 9;
+}
+
+.media--tall {
+	aspect-ratio: 4 / 5;
+}
+
+.media--square {
+	aspect-ratio: 1 / 1;
+}
+
+.media--device {
+	aspect-ratio: 16 / 9;
+}
+
+/* Placeholder label shown until a slot has its image or video. */
+.media-slot {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-content: center;
+	justify-items: center;
+	gap: 0.3rem;
+	padding: 1.5rem;
+	border: 1.5px dashed var(--tint-line-strong);
+	border-radius: inherit;
+	text-align: center;
+	color: var(--brand);
+}
+
+.media-slot strong {
+	font-size: 1.6rem;
+	font-weight: 600;
+	line-height: 1.1;
+}
+
+.media-slot span {
+	max-width: 28ch;
+	font-size: 0.95rem;
+	line-height: 1.35;
+}
+
+.media-slot .media-size {
+	color: var(--ink-muted);
+	font-variant-numeric: tabular-nums;
+}
+
+.band--brand .media {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.band--brand .media-slot {
+	border-color: rgba(255, 255, 255, 0.5);
+	color: #ffffff;
+}
+
+.band--brand .media-slot .media-size {
+	color: rgba(255, 255, 255, 0.78);
+}
+
+/* 2. Network ----------------------------------------------------------------- */
+
+.split {
+	display: grid;
+	grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+	gap: clamp(1.5rem, 6vw, 6rem);
+	align-items: start;
+	margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.lead p {
+	max-width: 38rem;
+	font-size: clamp(1.1rem, 1.45vw, 1.3rem);
+	line-height: 1.55;
+}
+
+/* 3. Core features ----------------------------------------------------------- */
+
+.feature-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: clamp(1.25rem, 2.5vw, 2.25rem);
+	margin-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.feature h3 {
+	margin-top: 1.25rem;
+}
+
+.feature p {
+	max-width: 36ch;
+	margin-top: 0.5rem;
+	color: var(--ink-muted);
+}
+
+/* 4 and 5. Media beside a list of points ------------------------------------- */
+
+.detail {
+	display: grid;
+	grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+	gap: clamp(2rem, 6vw, 6rem);
+	align-items: start;
+	margin-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.detail--reverse {
+	grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+}
+
+.detail-media {
+	position: sticky;
+	top: 6.5rem;
+}
+
+.points li {
+	padding-block: 1.4rem;
+	border-top: 1px solid var(--tint-line);
+}
+
+.points li:last-child {
+	border-bottom: 1px solid var(--tint-line);
+}
+
+.points p {
+	max-width: 48ch;
+	margin-top: 0.4rem;
+	color: var(--ink-muted);
+}
+
+.band--brand .points li {
+	border-color: rgba(255, 255, 255, 0.24);
+}
+
+.band--brand .points h3 {
+	color: var(--brand-natural);
+}
+
+.band--brand .points p {
+	color: rgba(255, 255, 255, 0.86);
+}
+
+/* 6. Product summary --------------------------------------------------------- */
+
+#summary .media {
+	margin-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.summary-list {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.9rem clamp(1.5rem, 4vw, 4rem);
+	margin-top: clamp(1.75rem, 3vw, 2.5rem);
+	font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+}
+
+.summary-list li {
+	position: relative;
+	padding-left: 1.4rem;
+}
+
+.summary-list li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.62em;
+	width: 0.5rem;
+	height: 0.5rem;
+	border-radius: 50%;
+	background: var(--brand-accent);
+}
+
+/* 7. Launch ------------------------------------------------------------------ */
+
+.launch {
+	padding-block: clamp(3rem, 7vw, 6rem) var(--section-gap);
+}
+
+.launch .container {
+	padding-top: clamp(2.5rem, 5vw, 4rem);
+	border-top: 1px solid var(--tint-line);
+}
+
+.launch-label {
+	font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+	color: var(--ink-muted);
+}
+
+.launch-date {
+	font-size: clamp(3.25rem, 12.5vw, 10.5rem);
+	font-weight: 600;
+	line-height: 0.98;
+	letter-spacing: -0.04em;
+	color: var(--brand);
+}
+
+/* Footer --------------------------------------------------------------------- */
+
+.site-footer {
+	padding-block: 2rem 2.5rem;
+	border-top: 1px solid var(--tint-line);
+}
+
+.footer-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.25rem 2rem;
+}
+
+.built-by {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	font-size: 0.95rem;
+	color: var(--ink-muted);
+	text-decoration: none;
+}
+
+.built-by img {
+	width: auto;
+	height: 26px;
+}
+
+.footer-legal {
+	display: flex;
+	gap: 1.5rem;
+	font-size: 0.95rem;
+	color: var(--ink-muted);
+}
+
+.footer-legal a:hover {
+	color: var(--brand);
+}
+
+/* Narrow screens ------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+	.nav-toggle {
+		display: block;
+	}
+
+	.nav-links {
+		position: absolute;
+		top: calc(100% + 8px);
+		left: 0;
+		right: 0;
+		display: none;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0;
+		padding: 0.5rem;
+		border-radius: 20px;
+		background: #ffffff;
+		box-shadow: var(--shadow-float);
+	}
+
+	.nav-links.is-open {
+		display: flex;
+	}
+
+	.nav-links a {
+		padding: 0.8rem 1rem;
+		border-radius: 14px;
+		font-size: 1.05rem;
+	}
+
+	.split,
+	.detail,
+	.detail--reverse {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.detail-media {
+		position: static;
+	}
+
+	.feature-grid {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 2.5rem;
+	}
+
+	.media--wide {
+		aspect-ratio: 4 / 3;
+	}
+
+	.summary-list {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.footer-row {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	.nav-links a {
+		transition: none;
+	}
+}

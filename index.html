@@ -4,279 +4,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MothNode | Remote Water Tank Monitoring</title>
+    <title>MothNode | Digitize your water tank infrastructure</title>
     <meta name="description"
-        content="MothNode is a remote tank monitoring system for rural fire departments. Automated water-level and battery monitoring for fire cisterns and dry hydrants, with instant alerts.">
+        content="MothNode puts your water tanks on one network, with frequent and on-demand level readings, off-grid operation, and no maintenance. Launching summer 2027.">
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <link rel="preload" href="fonts/GoogleSansFlex-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="mothnode.css">
+    <link rel="stylesheet" href="site.css">
 </head>
 
 <body>
-    <a href="#product" class="skip-link">Skip to content</a>
+    <a href="#network" class="skip-link">Skip to content</a>
 
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#product" class="logo-link">
-                <img class="logo-mark" src="images/logo.svg" alt="" width="36" height="36">
-                <span class="logo-text">MothNode</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#product" class="nav-link active">Product</a></li>
-                <li><a href="#features" class="nav-link">Features</a></li>
-                <li><a href="buy/" class="nav-cta">Buy Now</a></li>
+    <header class="site-nav" id="siteNav">
+        <a href="#top" class="brand">
+            <img src="images/logo.svg" alt="" width="32" height="32">
+            <span>MothNode</span>
+        </a>
+        <nav aria-label="Page sections">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#network">Network</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#infrastructure">Infrastructure</a></li>
+                <li><a href="#fire">Fire protection</a></li>
+                <li><a href="#launch">Launch</a></li>
             </ul>
-            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle menu" aria-expanded="false"
-                aria-controls="mobileNav">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <div class="mobile-nav" id="mobileNav">
-        <ul class="mobile-nav-links">
-            <li><a href="#product">Product</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="buy/">Buy</a></li>
-        </ul>
-    </div>
+        </nav>
+        <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">
+            Menu
+        </button>
+    </header>
 
     <main>
-        <section class="hero" id="product">
-            <div class="hero-container">
-                <div class="hero-left">
-                    <h1 class="hero-title">Real-Time Monitoring for Large Volume Water Cisterns</h1>
-                    <p class="hero-description">
-                        MothNode upgrades new and existing infrastructure to provide on demand level readings.
-                    </p>
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <span class="stat-number">Readings</span>
-                            <span class="stat-label">Within seconds</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">Maintenance</span>
-                            <span class="stat-label">Free</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">96+</span>
-                            <span class="stat-label">Updates daily</span>
-                        </div>
-                    </div>
-                    <div class="cta-group">
-                        <a href="buy/" class="cta-button primary">Buy Now</a>
-                        <a href="#features" class="cta-button outline">See Features</a>
+        <!-- 1. Hero ------------------------------------------------------- -->
+        <section class="hero" id="top">
+            <div class="hero-frame">
+                <!-- Slot G1. Stand-in photo until the real hero graphic exists. -->
+                <img class="hero-bg" src="images/R3view3.jpg"
+                    alt="A MothNode unit mounted on top of a water tank, seen through the trees" width="3200"
+                    height="1800" fetchpriority="high">
+                <div class="hero-panel">
+                    <h1>Digitize your water tank infrastructure with MothNode</h1>
+                    <p class="hero-sub">PLACEHOLDER</p>
+                </div>
+                <p class="slot-note">G1 stand-in image</p>
+            </div>
+        </section>
+
+        <!-- 2. The network ------------------------------------------------ -->
+        <section class="section" id="network">
+            <div class="container">
+                <div class="split">
+                    <h2>Every tank you manage, on one network.</h2>
+                    <div class="lead">
+                        <p>One tank gives you a reading. All of your tanks together give you the full picture. Each
+                            MothNode you install joins the same network and reports to the same dashboard, so you see
+                            your whole area at a glance instead of one site at a time.</p>
                     </div>
                 </div>
-
-                <div class="hero-right">
-                    <div class="hero-media">
-                        <div class="carousel-slide active">
-                            <img src="images/R3view1.png"
-                                alt="A large water cistern at a wooded rural site, with a MothNode unit mounted on its lid"
-                                width="922" height="878" fetchpriority="high">
-                        </div>
-                        <!-- Portrait shot with empty canopy above: anchor to the bottom so the
-                             unit and lid stay in frame when the hero crops it. -->
-                        <div class="carousel-slide">
-                            <img src="images/R3view2.png"
-                                alt="Close-up of a MothNode unit and its solar panel on a cistern lid, under the forest canopy"
-                                width="526" height="804" loading="lazy" style="object-position: center bottom">
-                        </div>
-                        <div class="carousel-slide">
-                            <img src="images/R3view3.jpg"
-                                alt="A MothNode unit on top of a cistern, seen through the trees"
-                                width="3200" height="1800" loading="lazy">
-                        </div>
-                        <div class="carousel-indicators" role="tablist" aria-label="Choose image">
-                            <button class="indicator active" type="button" role="tab" aria-selected="true"
-                                aria-label="Image 1"></button>
-                            <button class="indicator" type="button" role="tab" aria-selected="false"
-                                aria-label="Image 2"></button>
-                            <button class="indicator" type="button" role="tab" aria-selected="false"
-                                aria-label="Image 3"></button>
-                        </div>
+                <figure class="media media--wide">
+                    <div class="media-slot">
+                        <strong>G2</strong>
+                        <span>Aerial picture of a rural area with dots (devices) connecting</span>
+                        <span class="media-size">2400 × 1030</span>
                     </div>
+                </figure>
+            </div>
+        </section>
+
+        <!-- 3. Core features ---------------------------------------------- -->
+        <section class="band band--soft" id="features">
+            <div class="container">
+                <h2>Core features</h2>
+                <div class="feature-grid">
+                    <article class="feature">
+                        <figure class="media media--tall">
+                            <div class="media-slot">
+                                <strong>G3</strong>
+                                <span>Image for frequent and on-demand data updates</span>
+                                <span class="media-size">1200 × 1500</span>
+                            </div>
+                        </figure>
+                        <h3>Frequent and on-demand data updates</h3>
+                        <p>Your dashboard stays current with automatic readings around the clock. Need the level right
+                            now? Request a fresh reading at any time.</p>
+                    </article>
+
+                    <article class="feature">
+                        <figure class="media media--tall">
+                            <div class="media-slot">
+                                <strong>G4</strong>
+                                <span>Image for functional off-grid</span>
+                                <span class="media-size">1200 × 1500</span>
+                            </div>
+                        </figure>
+                        <h3>Functional off-grid</h3>
+                        <p>MothNode powers itself from its own solar panel and reaches you over long-range radio and
+                            cellular.</p>
+                    </article>
+
+                    <article class="feature">
+                        <figure class="media media--tall">
+                            <div class="media-slot">
+                                <strong>G5</strong>
+                                <span>Image for maintenance free</span>
+                                <span class="media-size">1200 × 1500</span>
+                            </div>
+                        </figure>
+                        <h3>Maintenance free</h3>
+                        <p>Install it once and leave it to work. No scheduled service visits to keep it running.</p>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section class="features" id="features">
-            <div class="section-header">
-                <h2 class="section-title">Why departments trust MothNode</h2>
-                <p class="section-subtitle">Reliable monitoring for fire protection and critical water access.</p>
-            </div>
-
-            <div class="feature-grid">
-                <article class="feature-card">
-                    <div class="card-body">
-                        <span class="card-badge">Live</span>
-                        <h3 class="card-title">24/7 Visibility</h3>
-                        <p class="card-subtitle">Track tank levels and system health from any device.</p>
-                        <p class="card-meta">Real-time data</p>
-                    </div>
-                </article>
-
-                <article class="feature-card">
-                    <div class="card-body">
-                        <span class="card-badge">Alert</span>
-                        <h3 class="card-title">Instant Alerts</h3>
-                        <p class="card-subtitle">Notify responders the moment conditions shift.</p>
-                        <p class="card-meta">Immediate</p>
-                    </div>
-                </article>
-
-                <article class="feature-card">
-                    <div class="card-body">
-                        <span class="card-badge">Low Effort</span>
-                        <h3 class="card-title">Low Maintenance</h3>
-                        <p class="card-subtitle">Reduce routine checks and keep crews focused on response.</p>
-                        <p class="card-meta">Less manual work</p>
-                    </div>
-                </article>
-
-                <article class="feature-card">
-                    <div class="card-body">
-                        <span class="card-badge">Universal</span>
-                        <h3 class="card-title">Built for Remote Sites</h3>
-                        <p class="card-subtitle">Deploy at cisterns, dry hydrants, and off-grid locations.</p>
-                        <p class="card-meta">Field ready</p>
-                    </div>
-                </article>
-            </div>
-
-            <div class="highlights">
-                <div class="highlight-item">
-                    <div class="highlight-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M5 12.55a11 11 0 0 1 14.08 0" />
-                            <path d="M1.42 9a16 16 0 0 1 21.16 0" />
-                            <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
-                            <line x1="12" y1="20" x2="12.01" y2="20" />
-                        </svg>
-                    </div>
-                    <h3 class="highlight-title">Remote Monitoring</h3>
-                    <p class="highlight-desc">Check tank status, level trends, and system health from any location.</p>
-                </div>
-
-                <div class="highlight-item">
-                    <div class="highlight-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                        </svg>
-                    </div>
-                    <h3 class="highlight-title">Automated Alerts</h3>
-                    <p class="highlight-desc">Know immediately when a source drops below expected capacity, or request
-                        an instant status check from the field.</p>
-                </div>
-
-                <div class="highlight-item">
-                    <div class="highlight-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                        </svg>
-                    </div>
-                    <h3 class="highlight-title">Field-Safe Hardware</h3>
-                    <p class="highlight-desc">Durable, low-maintenance monitoring built for demanding conditions.</p>
+        <!-- 4. Existing infrastructure and workflows ---------------------- -->
+        <section class="section" id="infrastructure">
+            <div class="container">
+                <h2>Get more from the infrastructure you already have</h2>
+                <div class="detail">
+                    <figure class="media media--tall detail-media">
+                        <div class="media-slot">
+                            <strong>G6</strong>
+                            <span>Image for infrastructure and workflows</span>
+                            <span class="media-size">1200 × 1500</span>
+                        </div>
+                    </figure>
+                    <ul class="points">
+                        <li>
+                            <h3>Fits the tanks you already have</h3>
+                            <p>Ultrasonic water level technology works with any tank. No retrofit.</p>
+                        </li>
+                        <li>
+                            <h3>Fewer trips</h3>
+                            <p>Stop driving out to tanks that turn out to be fine; go when a tank needs you.</p>
+                        </li>
+                        <li>
+                            <h3>Alerts</h3>
+                            <p>Get an email or text when a tank drops below the level you set. The same alerts catch
+                                slow leaks long before you would spot them on site.</p>
+                        </li>
+                        <li>
+                            <h3>Usage history</h3>
+                            <p>See how fast each tank draws down across days and seasons, to plan capacity.</p>
+                        </li>
+                        <li>
+                            <h3>A record you can show</h3>
+                            <p>Logged level history for inspections, insurers, or audits.</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <section class="product-description" aria-labelledby="product-description-title">
-            <div class="product-description-content">
-                <h2 id="product-description-title">A dependable monitoring solution for critical water access</h2>
-                <p>MothNode is a remote tank monitoring system built for rural fire departments that depend on fire
-                    cisterns and dry hydrants for fire protection. Using low-power electronics, long-range LoRa and
-                    cellular telemetry, and precise liquid-level sensing, it automates water-level and battery
-                    monitoring, sends email and SMS alerts when thresholds are crossed, and supports on-demand checks.
-                    Every unit reports into the MothNode Dashboard, keeping critical water sources dependable across
-                    departments.</p>
-            </div>
-        </section>
-        <section class="trust" id="trust" aria-labelledby="trust-title">
-            <div class="trust-inner">
-                <div class="section-header">
-                    <h2 class="section-title" id="trust-title">Why you should trust us</h2>
-                    <p class="section-subtitle">MothNode is built by LTRJ Labs and proven on the cisterns at our own
-                        test site.</p>
-                </div>
-
-                <div class="trust-grid">
-                    <div class="trust-item">
-                        <h3 class="trust-item-title">Proven where it has to work</h3>
-                        <p class="trust-item-desc">Our test site at Willis Point runs on fire cisterns and dry hydrants
-                            because city water simply is not available there. MothNode was built for that reality and
-                            is running on those tanks now, not on a bench.</p>
-                    </div>
-
-                    <div class="trust-item">
-                        <h3 class="trust-item-title">Fits the tanks you already have</h3>
-                        <p class="trust-item-desc">MothNode measures distance, so it works with any tank. Setup takes
-                            minutes and asks for two numbers: the maximum height and the empty floor height. No
-                            retrofit, no replacing what already works.</p>
-                    </div>
-
-                    <div class="trust-item">
-                        <h3 class="trust-item-title">Catches what an inspection cannot</h3>
-                        <p class="trust-item-desc">Cracked tanks and buried plumbing leak slowly and stay invisible from
-                            the surface. MothNode reads levels closely enough to separate a real loss from normal
-                            evaporation, logs the rate, and flags the tank for service.</p>
-                    </div>
-
-                    <div class="trust-item">
-                        <h3 class="trust-item-title">Fewer trips, less wear</h3>
-                        <p class="trust-item-desc">Manual checks mean long drives on rural roads to tanks that were
-                            probably fine. MothNode turns that into a proactive system, so a chief dispatches a crew
-                            when a tank asks for it and saves the volunteer hours and vehicle wear otherwise spent
-                            confirming nothing changed.</p>
-                    </div>
-                </div>
-
-                <div class="trust-cta">
-                    <a href="https://ltrjlabs.com" class="cta-button primary" target="_blank"
-                        rel="noopener noreferrer">Meet the creators</a>
+        <!-- 5. Fire protection -------------------------------------------- -->
+        <section class="band band--brand" id="fire">
+            <div class="container">
+                <h2>Made for fire protection</h2>
+                <div class="detail detail--reverse">
+                    <ul class="points">
+                        <li>
+                            <h3>Dependable when it matters</h3>
+                            <p>Cisterns and dry hydrants you know are full before you need them.</p>
+                        </li>
+                        <li>
+                            <h3>Check from the field</h3>
+                            <p>Request a reading on demand using Bluetooth or across the network.</p>
+                        </li>
+                        <li>
+                            <h3>Volunteer hours back</h3>
+                            <p>Fewer routine checks and less vehicle wear.</p>
+                        </li>
+                    </ul>
+                    <figure class="media media--square">
+                        <div class="media-slot">
+                            <strong>G8</strong>
+                            <span>Image for fire protection</span>
+                            <span class="media-size">1600 × 1600</span>
+                        </div>
+                    </figure>
                 </div>
             </div>
         </section>
 
+        <!-- 6. Product summary -------------------------------------------- -->
+        <section class="section" id="summary">
+            <div class="container container--narrow">
+                <h2>MothNode at a glance</h2>
+                <figure class="media media--device">
+                    <div class="media-slot">
+                        <strong>G9</strong>
+                        <span>Picture of the device</span>
+                        <span class="media-size">2000 × 1125</span>
+                    </div>
+                </figure>
+                <ul class="summary-list">
+                    <li>PLACEHOLDER</li>
+                    <li>PLACEHOLDER</li>
+                    <li>PLACEHOLDER</li>
+                    <li>PLACEHOLDER</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 7. Launch ----------------------------------------------------- -->
+        <section class="launch" id="launch">
+            <div class="container">
+                <p class="launch-label">Expected launch</p>
+                <p class="launch-date">Summer 2027</p>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h2>MothNode</h2>
-                <p>Remote monitoring for fire protection, dry hydrants, and critical water infrastructure.</p>
-                <div class="social-links">
-                    <!-- TODO: point this at the real LinkedIn page. -->
-                    <a href="#" class="social-link" aria-label="LinkedIn">
-                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path
-                                d="M6.9 21H3.6V9.2h3.3V21zM5.2 7.8A1.9 1.9 0 1 1 5.2 4a1.9 1.9 0 0 1 0 3.8zM21 21h-3.3v-5.7c0-1.4 0-3.2-1.9-3.2s-2.2 1.5-2.2 3.1V21H10.3V9.2h3.1v1.6h.1a3.5 3.5 0 0 1 3.1-1.7c3.3 0 4 2.2 4 5V21z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 MothNode. All rights reserved. |
-                <a href="privacy/" class="footer-link">Privacy Policy</a> | Built for dependable field operations.
-            </p>
-        </div>
-        <div class="powered-by">
-            <span class="powered-by-label">Powered by</span>
-            <a class="powered-by-link" href="https://ltrjlabs.com" target="_blank" rel="noopener noreferrer">
-                <img src="images/LtrjLogo.png" alt="LTRJ Labs" width="7193" height="2649">
+    <footer class="site-footer">
+        <div class="container footer-row">
+            <a href="#top" class="brand">
+                <img src="images/logo.svg" alt="" width="28" height="28">
+                <span>MothNode</span>
             </a>
+            <a class="built-by" href="https://ltrjlabs.com" target="_blank" rel="noopener noreferrer">
+                <span>Built by</span>
+                <img src="images/LtrjLogo.png" alt="LTRJ Labs" width="7193" height="2649" loading="lazy">
+            </a>
+            <p class="footer-legal">
+                <a href="privacy/">Privacy Policy</a>
+                <span>&copy; 2026 MothNode</span>
+            </p>
         </div>
     </footer>
 
-    <script src="mothnode.js"></script>
+    <script src="site.js"></script>
 </body>
 
 </html>
