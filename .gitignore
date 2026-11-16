@@ -1,2 +1,7 @@
-.claude/worktrees/
+# Local Claude Code config. The Pages workflow publishes the whole repo,
+# so anything tracked here would be served on the live site.
+.claude/
 .gstack/
+
+# macOS Finder metadata
+.DS_Store

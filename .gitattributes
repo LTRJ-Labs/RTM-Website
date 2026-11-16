@@ -4,3 +4,4 @@
 # Binary assets git should never try to diff or normalize.
 *.png binary
 *.jpg binary
+*.woff2 binary

@@ -11,7 +11,7 @@ A plain static site. No build step, no dependencies, no framework. Open
 `index.html` in a browser and it works.
 
 ```
-index.html          Front page: hero carousel, features, product description, trust
+index.html          Front page: hook, problem, MothNode, demo, roadmap, contact
 buy/index.html      Coming soon page
 privacy/index.html  Privacy policy
 mothnode.css        All styles
