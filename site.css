@@ -225,68 +225,21 @@ h3 {
 	height: 32px;
 }
 
-.nav-links {
-	display: flex;
-	align-items: center;
-	gap: 0.15rem;
-}
-
-.site-nav nav {
-	position: relative;
-}
-
-.nav-links a {
-	position: relative;
-	z-index: 1;
-	display: block;
-	padding: 0.5rem 0.9rem;
-	border-radius: 999px;
-	font-size: 0.95rem;
-	font-weight: 500;
-	text-decoration: none;
-	transition: background-color 0.15s ease, color 0.3s ease;
-}
-
-.nav-links a:hover {
-	background: var(--tint);
-}
-
-/* The section currently on screen (set by site.js). */
-.nav-links a[aria-current] {
-	color: var(--brand);
-}
-
-/* A pill that slides behind the current section's link. site.js creates it
-   and sets --x and --w from the link's position. */
-.nav-indicator {
-	position: absolute;
-	top: 50%;
-	left: 0;
-	width: var(--w, 0px);
-	height: 2.3rem;
-	border-radius: 999px;
-	background: var(--tint);
-	opacity: 0;
-	transform: translate(var(--x, 0px), -50%);
-	transition: transform 0.55s var(--ease-out), width 0.55s var(--ease-out), opacity 0.3s ease;
-	pointer-events: none;
-}
-
-.nav-indicator.is-on {
-	opacity: 1;
-}
-
-.nav-toggle {
-	display: none;
-	padding: 0.5rem 1rem;
-	border: 0;
+/* The header's one action: the same destination as the contact band's button. */
+.nav-cta {
+	padding: 0.5rem 1.1rem;
 	border-radius: 999px;
 	background: var(--brand);
 	color: #ffffff;
-	font: inherit;
 	font-size: 0.95rem;
 	font-weight: 500;
-	cursor: pointer;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: box-shadow 0.3s ease;
+}
+
+.nav-cta:hover {
+	box-shadow: 0 0 0 4px var(--tint);
 }
 
 /* 1. Hero ------------------------------------------------------------------ */
@@ -1044,42 +997,9 @@ h3 {
 /* Narrow screens ------------------------------------------------------------- */
 
 @media (max-width: 900px) {
-	.nav-toggle {
-		display: block;
-	}
-
-	.nav-indicator {
-		display: none;
-	}
-
 	/* The slot is 4:3 here, the same shape as the aerial, so nothing is cropped. */
 	.media-pan {
 		transform: none;
-	}
-
-	.nav-links {
-		position: absolute;
-		top: calc(100% + 8px);
-		left: 0;
-		right: 0;
-		display: none;
-		flex-direction: column;
-		align-items: stretch;
-		gap: 0;
-		padding: 0.5rem;
-		border-radius: 20px;
-		background: #ffffff;
-		box-shadow: var(--shadow-float);
-	}
-
-	.nav-links.is-open {
-		display: flex;
-	}
-
-	.nav-links a {
-		padding: 0.8rem 1rem;
-		border-radius: 14px;
-		font-size: 1.05rem;
 	}
 
 	.split,
@@ -1122,7 +1042,7 @@ h3 {
 		scroll-behavior: auto;
 	}
 
-	.nav-links a {
+	.nav-cta {
 		transition: none;
 	}
 }

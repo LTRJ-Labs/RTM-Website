@@ -1,37 +1,10 @@
-// MothNode site script: small-screen menu, in-view video playback, and the
+// MothNode site script: in-view video playback and the
 // animation layer. The animation layer only runs when the inline script in the
 // page <head> has put the js-anim class on <html>.
 (function () {
     'use strict';
 
     var root = document.documentElement;
-
-    // Menu ---------------------------------------------------------------
-    var toggle = document.getElementById('navToggle');
-    var links = document.getElementById('navLinks');
-
-    if (toggle && links) {
-        var setOpen = function (open) {
-            links.classList.toggle('is-open', open);
-            toggle.setAttribute('aria-expanded', String(open));
-        };
-
-        toggle.addEventListener('click', function () {
-            setOpen(!links.classList.contains('is-open'));
-        });
-
-        // Choosing a section closes the menu.
-        links.addEventListener('click', function (event) {
-            if (event.target.closest('a')) setOpen(false);
-        });
-
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape' && links.classList.contains('is-open')) {
-                setOpen(false);
-                toggle.focus();
-            }
-        });
-    }
 
     // Videos -------------------------------------------------------------
     // Videos marked data-autoplay load and play only while on screen, so a
@@ -75,7 +48,6 @@
         revealOnScroll();
         heroImage();
         heroParallax();
-        navIndicator();
         // Tells the <head> script that everything is wired up. If this line is
         // never reached, that script removes js-anim and the page shows as static.
         window.__animReady = true;
@@ -202,68 +174,5 @@
         }, { passive: true });
 
         update();
-    }
-
-    // Mark the navigation link for the section on screen, and slide a pill
-    // behind it.
-    function navIndicator() {
-        var nav = document.querySelector('.site-nav nav');
-        if (!nav) return;
-
-        var linkFor = {};
-        var sections = [];
-        nav.querySelectorAll('a[href^="#"]').forEach(function (link) {
-            var section = document.getElementById(link.getAttribute('href').slice(1));
-            if (!section) return;
-            linkFor[section.id] = link;
-            sections.push(section);
-        });
-        if (!sections.length) return;
-
-        var pill = document.createElement('span');
-        pill.className = 'nav-indicator';
-        pill.setAttribute('aria-hidden', 'true');
-        nav.insertBefore(pill, nav.firstChild);
-
-        var current = null;
-
-        var place = function () {
-            if (!current) {
-                pill.classList.remove('is-on');
-                return;
-            }
-            var navBox = nav.getBoundingClientRect();
-            var linkBox = current.getBoundingClientRect();
-            pill.style.setProperty('--x', (linkBox.left - navBox.left) + 'px');
-            pill.style.setProperty('--w', linkBox.width + 'px');
-            pill.classList.add('is-on');
-        };
-
-        var setCurrent = function (link) {
-            if (link === current) return;
-            if (current) current.removeAttribute('aria-current');
-            current = link;
-            if (current) current.setAttribute('aria-current', 'true');
-            place();
-        };
-
-        // A section counts as current while it covers a thin band just above
-        // the middle of the screen.
-        var visible = {};
-        var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                visible[entry.target.id] = entry.isIntersecting;
-            });
-            var active = null;
-            sections.forEach(function (section) {
-                if (visible[section.id]) active = linkFor[section.id];
-            });
-            setCurrent(active);
-        }, { rootMargin: '-45% 0px -50% 0px' });
-
-        sections.forEach(function (section) { observer.observe(section); });
-        window.addEventListener('resize', place);
-        // Link widths change once the web font arrives.
-        if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
     }
 })();

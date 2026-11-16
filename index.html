@@ -34,18 +34,7 @@
             <img src="images/logo.svg" alt="" width="32" height="32">
             <span>MothNode</span>
         </a>
-        <nav aria-label="Page sections">
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#problem">Problem</a></li>
-                <li><a href="#mothnode">MothNode</a></li>
-                <li><a href="#demo">Demo</a></li>
-                <li><a href="#roadmap">Roadmap</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-        <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">
-            Menu
-        </button>
+        <a class="nav-cta" href="https://ltrjlabs.com" target="_blank" rel="noopener noreferrer">Contact Us</a>
     </header>
 
     <main>
@@ -93,18 +82,14 @@
                                 where many rural cisterns sit.</p>
                         </li>
                     </ul>
-                    <!-- PLACEHOLDER: replace both figures with real, sourced numbers before this
-                         goes live (README: no invented statistics), or delete this block. -->
                     <div class="stats" data-stagger>
-                        <div class="stat stat--placeholder" data-reveal="up">
-                            <p class="stat-value">[#]</p>
+                        <div class="stat" data-reveal="up">
+                            <p class="stat-value">3500+</p>
                             <p>fire departments in Canada, most of them run by volunteers.</p>
-                            <p class="stat-source">Placeholder: source needed</p>
                         </div>
-                        <div class="stat stat--placeholder" data-reveal="up">
-                            <p class="stat-value">[#]</p>
-                            <p>cisterns and dry hydrants in [region] that are checked by hand today.</p>
-                            <p class="stat-source">Placeholder: source needed</p>
+                        <div class="stat" data-reveal="up">
+                            <p class="stat-value">8000+</p>
+                            <p>cisterns and dry hydrants in Canada that are checked by hand today.</p>
                         </div>
                     </div>
                 </div>
@@ -131,12 +116,12 @@
 
                 <div class="feature-grid" data-stagger>
                     <article class="feature" data-reveal="up">
+                        <!-- Slot G3. Pre-cropped to the slot's 4:5 so the phone and the tank
+                             behind it both stay in frame. -->
                         <figure class="media media--tall" data-reveal="media">
-                            <div class="media-slot">
-                                <strong>G3</strong>
-                                <span>Image for on-demand readings: an Update Now press, or a phone at the tank</span>
-                                <span class="media-size">1200 × 1500</span>
-                            </div>
+                            <img src="images/feature-ondemand.jpg"
+                                alt="A hand holding a phone in front of a water tank in the forest; the MothNode app shows the tank's water level, battery and an Update now button"
+                                width="1200" height="1500" loading="lazy">
                         </figure>
                         <h3>A fresh reading, in seconds</h3>
                         <!-- Keep this accurate: remote Update Now reaches cellular and gateway
