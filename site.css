@@ -366,8 +366,8 @@ h3 {
 
 /* The aerial is 4:3 inside a 16:9 slot. Rather than letting the browser crop
    it, .media-pan holds the whole frame and is slid up by 8% of its height, which
-   keeps the horizon and the distant dots in view. Because the pulses live inside
-   the same box, they stay locked to the dots however the frame moves. */
+   keeps the horizon and the distant dots in view. Being its own box also lets it
+   drift inside the slot on scroll (see Motion). */
 .media-pan {
 	position: absolute;
 	top: 0;
@@ -383,26 +383,6 @@ h3 {
 	object-fit: cover;
 }
 
-/* Rings that radiate from a dot in the image. Invisible unless animation is on. */
-.pulse {
-	position: absolute;
-	left: var(--x);
-	top: var(--y);
-	width: var(--s);
-	aspect-ratio: 1;
-	translate: -50% -50%;
-	pointer-events: none;
-}
-
-.pulse::before,
-.pulse::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	border: 2px solid var(--brand-accent);
-	border-radius: 50%;
-	opacity: 0;
-}
 
 .media--tall {
 	aspect-ratio: 4 / 5;
@@ -914,28 +894,6 @@ h3 {
 	from {
 		opacity: 0;
 		transform: translateY(14px);
-	}
-}
-
-/* Network: rings radiate from each dot once the image has been revealed. */
-.js-anim .is-in .pulse::before,
-.js-anim .is-in .pulse::after {
-	animation: pulse 3.2s cubic-bezier(0.2, 0.6, 0.3, 1) var(--wait, 0s) infinite;
-}
-
-.js-anim .is-in .pulse::after {
-	animation-delay: calc(var(--wait, 0s) + 1.6s);
-}
-
-@keyframes pulse {
-	0% {
-		opacity: 0.9;
-		transform: scale(1);
-	}
-
-	100% {
-		opacity: 0;
-		transform: scale(var(--grow, 3));
 	}
 }
 
