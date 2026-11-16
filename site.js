@@ -121,11 +121,6 @@
                 index += 1;
             });
         });
-
-        // Key words in the summary highlight one after another.
-        document.querySelectorAll('.key').forEach(function (key, index) {
-            key.style.setProperty('--k', index);
-        });
     }
 
     // Add .is-in to each [data-reveal] element the first time it comes on

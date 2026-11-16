@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MothNode | Digitize your water tank infrastructure</title>
+    <title>MothNode | Know the water is there before the fire starts</title>
     <meta name="description"
-        content="MothNode puts your water tanks on one network, with frequent and on-demand level readings, off-grid operation, and no maintenance. Launching summer 2027.">
+        content="MothNode monitors the cisterns and dry hydrants rural fire departments depend on: readings on demand, solar powered, and working beyond cell coverage. Launching summer 2027.">
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <link rel="preload" href="fonts/GoogleSansFlex-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="site.css">
@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    <a href="#network" class="skip-link">Skip to content</a>
+    <a href="#problem" class="skip-link">Skip to content</a>
 
     <header class="site-nav" id="siteNav">
         <a href="#top" class="brand">
@@ -36,11 +36,11 @@
         </a>
         <nav aria-label="Page sections">
             <ul class="nav-links" id="navLinks">
-                <li><a href="#network">Network</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#infrastructure">Infrastructure</a></li>
-                <li><a href="#fire">Fire protection</a></li>
-                <li><a href="#launch">Launch</a></li>
+                <li><a href="#problem">Problem</a></li>
+                <li><a href="#mothnode">MothNode</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
         <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks">
@@ -49,7 +49,7 @@
     </header>
 
     <main>
-        <!-- 1. Hero ------------------------------------------------------- -->
+        <!-- 1. Hook ------------------------------------------------------- -->
         <section class="hero" id="top">
             <div class="hero-frame">
                 <!-- Slot G1. The text panel is kept wide and low so it only covers the
@@ -58,21 +58,186 @@
                     alt="A MothNode unit on top of a teal-tinted water tank in the forest, with faint signal waves rising from it"
                     width="2880" height="1620" fetchpriority="high">
                 <div class="hero-panel">
-                    <h1 data-reveal="words">Digitize your water tank infrastructure with MothNode</h1>
-                    <p class="hero-sub">PLACEHOLDER</p>
+                    <h1 data-reveal="words">Know the water is there before the fire starts</h1>
+                    <p class="hero-sub">Live water levels for every rural cistern and dry hydrant.</p>
+                    <ul class="hero-tags" aria-label="What sets MothNode apart">
+                        <li>Readings on demand</li>
+                        <li>Solar powered</li>
+                        <li>Works beyond cell coverage</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- 2. The network ------------------------------------------------ -->
-        <section class="section" id="network">
+        <!-- 2. The problem ------------------------------------------------- -->
+        <section class="band band--brand" id="problem" data-reveal="band">
             <div class="container">
                 <div class="split">
-                    <h2 data-reveal="words">Every tank you manage, on one network.</h2>
+                    <h2 data-reveal="words">Rural fire protection runs on water no one can see</h2>
                     <div class="lead" data-reveal="up">
-                        <p>One tank gives you a reading. All of your tanks together give you the full picture. Each
-                            MothNode you install joins the same network and reports to the same dashboard, so you see
-                            your whole area at a glance instead of one site at a time.</p>
+                        <p>Where there are no hydrants, departments fight fires with water stored in cisterns, dry
+                            hydrants and tanks. The only way to know that water is there is to drive out and look.
+                            Between checks, a slow leak or an unreported draw can leave a tank low, and the crew finds
+                            out at the fire.</p>
+                    </div>
+                </div>
+                <div class="detail detail--reverse">
+                    <ul class="points" data-stagger>
+                        <li data-reveal="line">
+                            <h3>Checked by hand</h3>
+                            <p>Every routine check costs a volunteer's time and a truck's kilometres, repeated for
+                                every tank a department covers.</p>
+                        </li>
+                        <li data-reveal="line">
+                            <h3>Blind between checks</h3>
+                            <p>A leak or a draw nobody logged goes unnoticed until the next visit, or the next fire.</p>
+                        </li>
+                        <li data-reveal="line">
+                            <h3>Out of reach for cellular monitors</h3>
+                            <p>Monitors that need a cell signal can't report from the valleys, back roads and forest
+                                where many rural cisterns sit.</p>
+                        </li>
+                    </ul>
+                    <!-- PLACEHOLDER: replace both figures with real, sourced numbers before this
+                         goes live (README: no invented statistics), or delete this block. -->
+                    <div class="stats" data-stagger>
+                        <div class="stat stat--placeholder" data-reveal="up">
+                            <p class="stat-value">[#]</p>
+                            <p>fire departments in Canada, most of them run by volunteers.</p>
+                            <p class="stat-source">Placeholder: source needed</p>
+                        </div>
+                        <div class="stat stat--placeholder" data-reveal="up">
+                            <p class="stat-value">[#]</p>
+                            <p>cisterns and dry hydrants in [region] that are checked by hand today.</p>
+                            <p class="stat-source">Placeholder: source needed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. MothNode: the solution and its three differentiators --------- -->
+        <section class="band band--grey" id="mothnode" data-reveal="band">
+            <div class="container">
+                <h2 data-reveal="words">MothNode puts every tank on one network</h2>
+                <!-- A white card on grey. The render (slot G9) has a white background,
+                     so it sits on the card with no visible edge. -->
+                <div class="product-card" data-reveal="up">
+                    <img class="product-device" src="images/mothnode-r3.jpg"
+                        alt="The MothNode unit: a rectangular enclosure with a clear lid over a dark panel"
+                        width="1149" height="553" loading="lazy">
+                    <div class="product-text">
+                        <p>An ultrasonic sensor on the tank lid measures the water level. MothNode sends each reading
+                            over cellular, or over long-range LoRa radio through a nearby gateway, to the MothNode
+                            Dashboard, which alerts your team when a level drops.</p>
+                        <p>It fits the tanks you already have. No retrofit.</p>
+                    </div>
+                </div>
+
+                <div class="feature-grid" data-stagger>
+                    <article class="feature" data-reveal="up">
+                        <figure class="media media--tall" data-reveal="media">
+                            <div class="media-slot">
+                                <strong>G3</strong>
+                                <span>Image for on-demand readings: an Update Now press, or a phone at the tank</span>
+                                <span class="media-size">1200 × 1500</span>
+                            </div>
+                        </figure>
+                        <h3>A fresh reading, in seconds</h3>
+                        <!-- Keep this accurate: remote Update Now reaches cellular and gateway
+                             units only; LoRa units answer on demand over Bluetooth at the tank.
+                             Swap "within seconds" for the measured time once it is timed. -->
+                        <p>Readings arrive on a schedule around the clock. Need the level now? Press Update Now and a
+                            cellular or gateway unit measures and reports within seconds. At the tank, any unit answers
+                            your phone over Bluetooth.</p>
+                    </article>
+
+                    <article class="feature" data-reveal="up">
+                        <!-- Slot G5. Anchored low so the unit and tank lid stay in the crop. -->
+                        <figure class="media media--tall media--anchor-low" data-reveal="media">
+                            <img src="images/feature-maintenance.jpg"
+                                alt="A MothNode unit on a tank lid in the forest, lit by a beam of yellow-green sunlight"
+                                width="525" height="804" loading="lazy">
+                        </figure>
+                        <h3>Solar powered</h3>
+                        <p>A built-in solar panel keeps MothNode charged. No wiring to the tank, no battery swaps, and
+                            no service visits to keep it running.</p>
+                    </article>
+
+                    <article class="feature" data-reveal="up">
+                        <!-- Slot G4. A landscape aerial in a portrait slot: positioned so the
+                             MothNode marker and the signal beam both stay in the crop. -->
+                        <figure class="media media--tall media--anchor-left" data-reveal="media">
+                            <img src="images/feature-offgrid.jpg"
+                                alt="Aerial view of a forested rural property, with a MothNode marker sending a signal beam out over the trees"
+                                width="2000" height="1500" loading="lazy">
+                        </figure>
+                        <h3>Works beyond cell coverage</h3>
+                        <p>Where there's no cell signal, MothNode sends its readings over long-range LoRa radio to a
+                            gateway that has one. One gateway relays for the tanks around it.</p>
+                    </article>
+                </div>
+
+                <div class="also" data-reveal="up">
+                    <p class="also-label">Also included</p>
+                    <ul>
+                        <li>Low-level and leak alerts by text or email</li>
+                        <li>Usage history across seasons</li>
+                        <li>A logged record for inspections and insurers</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Demo -------------------------------------------------------- -->
+        <section class="band band--soft" id="demo" data-reveal="band">
+            <div class="container">
+                <div class="split">
+                    <h2 data-reveal="words">See it work</h2>
+                    <div class="lead" data-reveal="up">
+                        <p>The MothNode Dashboard shows every tank's level, battery and history in one place.</p>
+                    </div>
+                </div>
+                <div class="detail detail--wide-media">
+                    <!-- Slot G6. Silent looping video; site.js starts it when it scrolls
+                         into view and shows controls instead for reduced-motion visitors.
+                         TODO: re-record to show an Update Now press and the new reading
+                         arriving, with time visible on screen. -->
+                    <figure class="media media--video detail-media" data-reveal="media">
+                        <video data-autoplay muted loop playsinline preload="none" width="1200" height="1000"
+                            aria-label="Screen recording of the MothNode Dashboard showing a tank's water level and battery readings">
+                            <source src="videos/infrastructure.mp4" type="video/mp4">
+                        </video>
+                    </figure>
+                    <ul class="points" data-stagger>
+                        <li data-reveal="line">
+                            <h3>Every tank at a glance</h3>
+                            <p>Your whole area on one screen, instead of one site at a time.</p>
+                        </li>
+                        <li data-reveal="line">
+                            <h3>Alerts before it's a problem</h3>
+                            <p>A text or email when a tank drops below the level you set. The same alerts catch slow
+                                leaks long before you would spot them on site.</p>
+                        </li>
+                        <li data-reveal="line">
+                            <h3>Trips only when they're needed</h3>
+                            <p>Stop driving out to tanks that turn out to be fine; go when a tank needs you.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Where this goes --------------------------------------------- -->
+        <section class="section" id="roadmap">
+            <div class="container">
+                <div class="split">
+                    <h2 data-reveal="words">From one department to a national network</h2>
+                    <div class="lead" data-reveal="up">
+                        <p>Every MothNode joins the same network, and every gateway extends coverage to the tanks
+                            around it. We're starting with rural fire departments and building toward a live picture
+                            of firefighting water across rural Canada, for departments, wildfire agencies and the
+                            communities they protect.</p>
                     </div>
                 </div>
                 <!-- Slot G2. The source is 4:3 and the slot is 16:9, so .media-pan holds
@@ -85,151 +250,38 @@
                             width="2400" height="1800" loading="lazy">
                     </div>
                 </figure>
+                <ol class="roadmap" data-stagger>
+                    <li data-reveal="up">
+                        <p class="roadmap-when">Now</p>
+                        <h3>Field testing</h3>
+                        <p>Rev 3 hardware is in testing on real tanks.</p>
+                    </li>
+                    <li data-reveal="up">
+                        <p class="roadmap-when">Next</p>
+                        <h3>Certification and pilots</h3>
+                        <p>Radio certification for Canada and the US, and pilot deployments with fire departments.</p>
+                    </li>
+                    <li class="roadmap-launch" data-reveal="up">
+                        <p class="roadmap-when">Summer 2027</p>
+                        <h3>Launch</h3>
+                        <p>MothNode available to order.</p>
+                    </li>
+                </ol>
             </div>
         </section>
 
-        <!-- 3. Core features ---------------------------------------------- -->
-        <section class="band band--soft" id="features" data-reveal="band">
-            <div class="container">
-                <h2 data-reveal="words">Core features</h2>
-                <div class="feature-grid" data-stagger>
-                    <article class="feature" data-reveal="up">
-                        <figure class="media media--tall" data-reveal="media">
-                            <div class="media-slot">
-                                <strong>G3</strong>
-                                <span>Image for frequent and on-demand data updates</span>
-                                <span class="media-size">1200 × 1500</span>
-                            </div>
-                        </figure>
-                        <h3>Frequent and on-demand data updates</h3>
-                        <p>Your dashboard stays current with automatic readings around the clock. Need the level right
-                            now? Request a fresh reading at any time.</p>
-                    </article>
-
-                    <article class="feature" data-reveal="up">
-                        <!-- Slot G4. A landscape aerial in a portrait slot: positioned so the
-                             MothNode marker and the signal beam both stay in the crop. -->
-                        <figure class="media media--tall media--anchor-left" data-reveal="media">
-                            <img src="images/feature-offgrid.jpg"
-                                alt="Aerial view of a forested rural property, with a MothNode marker sending a signal beam out over the trees"
-                                width="2000" height="1500" loading="lazy">
-                        </figure>
-                        <h3>Functional off-grid</h3>
-                        <p>MothNode reaches you over long-range radio and cellular.</p>
-                    </article>
-
-                    <article class="feature" data-reveal="up">
-                        <!-- Slot G5. Anchored low so the unit and tank lid stay in the crop. -->
-                        <figure class="media media--tall media--anchor-low" data-reveal="media">
-                            <img src="images/feature-maintenance.jpg"
-                                alt="A MothNode unit on a tank lid in the forest, lit by a beam of yellow-green sunlight"
-                                width="525" height="804" loading="lazy">
-                        </figure>
-                        <h3>Maintenance free</h3>
-                        <p>Install it once and leave it to work. MothNode powers itself from its own solar panel, so
-                            there are no scheduled service visits to keep it running.</p>
-                    </article>
+        <!-- Contact (closes section 5) ------------------------------------- -->
+        <section class="band band--brand" id="contact" data-reveal="band">
+            <div class="container contact">
+                <div>
+                    <h2 data-reveal="words">Let's talk</h2>
+                    <p class="contact-lead" data-reveal="up">Run a fire department, a wildfire program, or water
+                        infrastructure in rural Canada? We'd like to hear from you.</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- 4. Existing infrastructure and workflows ---------------------- -->
-        <section class="section" id="infrastructure">
-            <div class="container">
-                <h2 data-reveal="words">Get more from the infrastructure you already have</h2>
-                <div class="detail detail--wide-media">
-                    <!-- Slot G6. Silent looping video; site.js starts it when it scrolls
-                         into view and shows controls instead for reduced-motion visitors. -->
-                    <figure class="media media--video detail-media" data-reveal="media">
-                        <video data-autoplay muted loop playsinline preload="none" width="1200" height="1000"
-                            aria-label="Screen recording of the MothNode Dashboard showing a tank's water level and battery readings">
-                            <source src="videos/infrastructure.mp4" type="video/mp4">
-                        </video>
-                    </figure>
-                    <ul class="points" data-stagger>
-                        <li data-reveal="line">
-                            <h3>Fits the tanks you already have</h3>
-                            <p>Ultrasonic water level technology works with any tank. No retrofit.</p>
-                        </li>
-                        <li data-reveal="line">
-                            <h3>Fewer trips</h3>
-                            <p>Stop driving out to tanks that turn out to be fine; go when a tank needs you.</p>
-                        </li>
-                        <li data-reveal="line">
-                            <h3>Alerts</h3>
-                            <p>Get an email or text when a tank drops below the level you set. The same alerts catch
-                                slow leaks long before you would spot them on site.</p>
-                        </li>
-                        <li data-reveal="line">
-                            <h3>Usage history</h3>
-                            <p>See how fast each tank draws down across days and seasons, to plan capacity.</p>
-                        </li>
-                        <li data-reveal="line">
-                            <h3>A record you can show</h3>
-                            <p>Logged level history for inspections, insurers, or audits.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. Fire protection -------------------------------------------- -->
-        <section class="band band--brand" id="fire" data-reveal="band">
-            <div class="container">
-                <h2 data-reveal="words">Made for fire protection</h2>
-                <div class="detail detail--reverse">
-                    <ul class="points" data-stagger>
-                        <li data-reveal="line">
-                            <h3>Dependable when it matters</h3>
-                            <p>Cisterns and dry hydrants you know are full before you need them.</p>
-                        </li>
-                        <li data-reveal="line">
-                            <h3>Check from the field</h3>
-                            <p>Request a reading on demand using Bluetooth or the internet.</p>
-                        </li>
-                        <li data-reveal="line">
-                            <h3>Volunteer hours back</h3>
-                            <p>Fewer routine checks and less vehicle wear.</p>
-                        </li>
-                    </ul>
-                    <figure class="media media--square" data-reveal="media">
-                        <div class="media-slot">
-                            <strong>G8</strong>
-                            <span>Image for fire protection</span>
-                            <span class="media-size">1600 × 1600</span>
-                        </div>
-                    </figure>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. Product summary -------------------------------------------- -->
-        <section class="band band--grey" id="summary" data-reveal="band">
-            <div class="container">
-                <div class="summary">
-                    <h2 data-reveal="words">MothNode at a glance</h2>
-                    <!-- A white card on grey. The render (slot G9) has a white background,
-                         so it sits on the card with no visible edge. -->
-                    <div class="summary-card" data-reveal="up">
-                        <img class="summary-device" src="images/mothnode-r3.jpg"
-                            alt="The MothNode unit: a rectangular enclosure with a clear lid over a dark panel"
-                            width="1149" height="553" loading="lazy">
-                        <ul class="summary-list" data-stagger>
-                            <li data-reveal="up"><strong class="key">Precision</strong> water level sensing</li>
-                            <li data-reveal="up"><strong class="key">Frequent</strong> and <strong
-                                    class="key">on-demand</strong> measurements</li>
-                            <li data-reveal="up"><strong class="key">Maintenance free</strong></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. Launch ----------------------------------------------------- -->
-        <section class="launch" id="launch">
-            <div class="container">
-                <p class="launch-label" data-reveal="up">Expected launch</p>
-                <p class="launch-date" data-reveal="words">Summer 2027</p>
+                <!-- TODO: point this at a mailto: address once there is one to publish.
+                     The privacy policy (section 4) already covers email contact. -->
+                <a class="button" href="https://ltrjlabs.com" target="_blank" rel="noopener noreferrer"
+                    data-reveal="up">Contact LTRJ Labs</a>
             </div>
         </section>
     </main>
